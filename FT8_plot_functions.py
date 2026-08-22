@@ -1,23 +1,18 @@
 #plot functions
 
-from matplotlib import dates
-import mplcursors
-
-
-import mplcursors
-
 
 def my_line_plot(band_type, year_type,data=None):
     """"Creates a line plot with subplots for the given data."""
     import seaborn as sns
     import matplotlib.pylab as plt
-    
+    import mplcursors
+
     #print(f"Creating line plot for {band_type} band in {year_type}...")
     #print(f"Data received for plotting: {data.head() if data is not None else 'No data provided'}")
     
 
     sns.set_style("whitegrid")
-    fig, axes = plt.subplots(2, 1, figsize=(12, 10))
+    fig, axes = plt.subplots(2, 1, figsize=(8, 8), constrained_layout=True)
 
 # Line plot on first subplot
     sns.lineplot(x='MONTH', y='RST_RCVD', data=data, label='RST Received', linestyle='dashed', errorbar=('ci', 20), ax=axes[0])
@@ -26,16 +21,16 @@ def my_line_plot(band_type, year_type,data=None):
     sns.lineplot(x='MONTH', y='K_INDEX', data=data, label='K Index', errorbar=('ci', 20), ax=axes[0])
     sns.lineplot(x='MONTH', y='SFI', data=data, label='SFI', errorbar=('ci', 20), ax=axes[0])
     axes[0].set_title(f'FT8 Analysis for {band_type} Band in {year_type}')
-    axes[0].legend()
+    axes[0].legend(loc='upper right', framealpha=0.7, fancybox=True)
 
 # Histogram plot on second subplot
     sns.histplot(x='MONTH', data=data, bins=12, color='lightblue', edgecolor='black', alpha=0.7, label='Number of Signals', ax=axes[1])
     axes[1].set_title('Signal Count by Month')
-    axes[1].legend(loc='upper right')
-
-
+    axes[1].legend(loc='upper right', framealpha=0.7, fancybox=True)
     plt.xticks(rotation=45)
     plt.tight_layout()
+    plt.grid(True, linestyle='--', alpha=0.7)
+
     plt.show()
     return
 
@@ -53,6 +48,8 @@ def my_scatter_plot(band_type, year_type, data):
     plt.ylabel("RST")
     plt.xticks(rotation=45)
     plt.tight_layout()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.legend(loc='upper right', framealpha=0.7, fancybox=True)
     plt.show()
     return
 
@@ -61,8 +58,9 @@ def my_mean_line_plot(band_type, year_type, data):
     """Creates a scatter plot for RST RCVD and RST SENT over the months for the specified band and year."""
     import pandas as pd
     import seaborn as sns
+    import sys
     import matplotlib.pylab as plt
-
+    
     if data is None:
         raise ValueError("data cannot be None")
 
@@ -71,7 +69,7 @@ def my_mean_line_plot(band_type, year_type, data):
     monthly_means = df.groupby('MONTH')[['RST_RCVD', 'RST_SENT']].mean().reset_index()
 
     # create line plot and scatter plot
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(6, 3))
     sns.lineplot(x='MONTH', y='RST_RCVD', data=monthly_means, marker='o', label='Mean RST_RCVD', color='red')
     sns.lineplot(x='MONTH', y='RST_SENT', data=monthly_means, marker='o', color='green', label='Mean RST_SENT', linestyle='--')
     sns.scatterplot(x='MONTH', y='RST_RCVD', label='RST RCVD', color='red', data=data)
@@ -93,7 +91,7 @@ def my_line_plot_band(band_type, year_type, data):
     import mplcursors
     
     sns.set_style("darkgrid")
-    fig, axes = plt.subplots(2, 1, figsize=(12, 10))
+    fig, axes = plt.subplots(2, 1, figsize=(6, 3), constrained_layout=True)
 # Line plot on first subplot
     sns.lineplot(x='MONTH', y='RST_RCVD', data=data, label='RST Received', linestyle='dashed', errorbar=('ci', 20), ax=axes[0])
     sns.lineplot(x='MONTH', y='RST_SENT', data=data, label='RST Sent', linestyle='dotted', color='red', errorbar=('ci', 95), ax=axes[0])
@@ -101,12 +99,12 @@ def my_line_plot_band(band_type, year_type, data):
     sns.lineplot(x='MONTH', y='K_INDEX', data=data, label='K Index', errorbar=('ci', 20), ax=axes[0])
     sns.lineplot(x='MONTH', y='SFI', data=data, label='SFI', errorbar=('ci', 20), ax=axes[0])
     axes[0].set_title(f'FT8 Analysis for {band_type} Band')
-    axes[0].legend()
+    axes[0].legend(loc='upper right', framealpha=0.7, fancybox=True)
 
 # Histogram plot on second subplot
     sns.histplot(x='MONTH', data=data, bins=12, color='lightblue', edgecolor='black', alpha=0.7, label='Number of QSOs', ax=axes[1])
     axes[1].set_title('Signal Count by Month')
-    axes[1].legend(loc='upper right')
+    axes[1].legend(loc='upper right', framealpha=0.7, fancybox=True)
 
     plt.xticks(rotation=45)
     plt.tight_layout()
