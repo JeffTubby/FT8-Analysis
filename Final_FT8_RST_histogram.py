@@ -1,3 +1,7 @@
+# This script generates histograms for RST_SENT and RST_RCVD values for a selected band and year.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
 import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
 
 # Drop down box function to select band and year
@@ -6,11 +10,13 @@ from my_dropdown_box_func import my_drop_down_box as ddb
 # get data from PythonData17326.xlsx
 def get_my_band_all_data(band_type, year_type):
     """Fetches and processes data for the specified band and year."""
+    # Ensure the band_type and year_type are strings and stripped of any leading/trailing whitespace.
+    band_type = str(band_type).strip()
+    year_type = str(year_type).strip()
 
-    
-
-    Path = pathlib.Path('data/datasheet.xlsx')   
-    df = pd.read_excel('data/datasheet.xlsx')
+    # Define the path to the datasheet.
+    path = pathlib.Path('data/datasheet.xlsx')   
+    df = pd.read_excel(path)
     df['BAND'] = df['BAND'].astype(str).str.strip()
     df['YEAR'] = df['YEAR'].astype(str).str.strip()
     df['A_INDEX'] = df['A_INDEX'].astype(str).str.strip()
@@ -20,12 +26,10 @@ def get_my_band_all_data(band_type, year_type):
     df['TIME_ADL'] = df['TIME_ADL'].astype(str).str.strip()
     df['DATE'] = df['DATE'].astype(str).str.strip()
 
-
     # select the correct band and year
     mask = (df['BAND'] == band_type) & (df['YEAR'] == year_type)
 
-
-# Parse to datetime/time with strict format validation
+    # Parse to datetime/time with strict format validation
     df['TIME_ADL'] = pd.to_datetime(df['TIME_ADL'], format='%H:%M:%S', errors='coerce').dt.time
 
     df_filtered = df.loc[mask, ['BAND', 'MONTH', 'RST_RCVD', 'RST_SENT',
@@ -34,14 +38,12 @@ def get_my_band_all_data(band_type, year_type):
     my_data = df_filtered   
     data =my_data.copy()
 
-
-# sort date from earliest to latest
+    # sort date from earliest to latest
     data['DATE'] = pd.to_datetime(data['DATE'], errors='coerce')
     data = data.sort_values('DATE')
     
     #format date to d%-m-%Y
     data['DATE'] = data['DATE'].dt.strftime('%d-%m-%Y')
-
     return data
 
 def main():  
@@ -54,7 +56,6 @@ def main():
     # Call the function get_my_band_all_data with the correct parameters from get_band_all_data.py
     data = get_my_band_all_data(band_type, year_type)
     
-
     # create a histogram of the RST_RCVD column
     plt.figure(figsize=(5, 3))
     sns.set_style("darkgrid")

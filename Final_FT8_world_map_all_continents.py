@@ -1,10 +1,18 @@
+# This script generates a world map highlighting QSO counts for each continent.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
 import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
 import geopandas as gpd
 import geodatasets
 import matplotlib.patheffects as path_effects
+
 from datetime import datetime
-from my_dropdown_box_func import my_drop_down_box as ddb
 from collections import Counter
+
+# Import the custom drop down box function for selecting band and year.
+# This function will be used to create a drop down box for selecting the band and year.
+from my_dropdown_box_func import my_drop_down_box as ddb
 
 def get_all_data():
     """Fetches and processes data for the specified band and year."""
@@ -30,17 +38,19 @@ def get_all_data():
     #df["CONT"] = df["CONT"].replace("AN", "NA")
 
 
-# Parse to datetime/time with strict format validation
+    # Parse to datetime/time with strict format validation
     df['TIME_ADL'] = pd.to_datetime(df['TIME_ADL'], format='%H:%M:%S', errors='coerce').dt.time
     data = pd.DataFrame(df.copy())
-
     return data
 
 
 def main():
+    # Fetch all QSO data from the Excel datasheet.
+    # Initialize a dictionary to store QSO counts for each continent.
     df = get_all_data()
     qso_cont = {}
 
+    # Count the number of QSOs for each continent.
     if df is not None:
         qso_cont = (
             df["CONT"].fillna("").astype(str).str.strip()
@@ -49,6 +59,8 @@ def main():
             .to_dict()
         )
 
+    # Load the world map shapefile for plotting.
+    # Read the world map shapefile from the provided URL.   
     world = gpd.read_file(
         "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
     )
@@ -79,6 +91,8 @@ def main():
         "South America": (-60, -15),
     }
 
+    # Create the plot for the world map with QSO counts for each continent.
+    # Set up the figure and axis for the plot.
     fig, ax = plt.subplots(figsize=(10, 6))
     world.plot(ax=ax, edgecolor="black", facecolor="#dddddd")
 
@@ -111,12 +125,9 @@ def main():
         path_effects.withSimplePatchShadow(offset=(2, -2), shadow_rgbFace='black')
         ])
 
-    plt.title("World Map with Continents QSO Count", fontsize=16)
+    plt.title("World Map with Continents QSO Total Count", fontsize=16)
     plt.tight_layout()
     plt.show()
 
-    #plt.savefig("output/world_map_continent_qso_count.png", dpi=300, bbox_inches="tight")
-    #plt.close(fig)
-    
 if __name__ == "__main__":
     main()

@@ -1,13 +1,21 @@
+# This script generates a scatter plot showing RST values over local time (TIME_ADL) for a selected band and year.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import mplcursors
 import pandas as pd
 import seaborn as sns
 
+# Required imports and data preparation functions for plotting RST values over time.
+# Import the drop down box function and data preparation functions from the respective modules.
 from my_dropdown_box_func import my_drop_down_box as ddb
-from FT8_data_prep import prepare_time_adl_rst_plot_data
-from FT8_data_prep import prepare_rst_long_data
-from FT8_data_prep import prepare_mean_rst_line_data
+
+# Import the necessary functions from the Final_FT8_data_prep module.
+# These functions are used to prepare the data for plotting RST values over time.
+from Final_FT8_data_prep import prepare_time_adl_rst_plot_data
+from Final_FT8_data_prep import prepare_rst_long_data
+from Final_FT8_data_prep import prepare_mean_rst_line_data
 
 def get_my_data_band_year(band_type, year_type): #gmd
     """Fetches and processes data for the specified band and year."""
@@ -52,6 +60,7 @@ def get_my_data_band_year(band_type, year_type): #gmd
     return data
 
 def main():
+   
     # Get data from box input.
     print("Running drop down box function to select band and year...")
     band_type, year_type = ddb(default_band="20m", default_year="2025")
@@ -68,7 +77,9 @@ def main():
         print("No valid RST rows available to plot.")
         return
     
-
+    # Create the scatter plot for RST values over local time (TIME_ADL)
+    # Set up the Seaborn style and create the figure and axis for the plot.
+    # Create a scatter plot with TIME_ADL on the x-axis and RST values on the y-axis, differentiating RST_SENT and RST_RCVD by color and style.
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(9, 4))
     plt.title(f"Scatter Plot of TIME_ADL vs RST by {year_type} and {band_type}", fontsize=10)

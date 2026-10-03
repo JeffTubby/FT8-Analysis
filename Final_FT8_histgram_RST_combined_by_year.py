@@ -1,3 +1,7 @@
+# This script generates histograms for RST_SENT and RST_RCVD for each year.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
 import pandas as pd, seaborn as sns, matplotlib.pylab as plt, pathlib, sys, datetime
 from datetime import datetime as dt
 
@@ -37,9 +41,9 @@ def get_my_band_all_data(band_type, year_type):
 
 def main():  
     
-    #band_type = "20m"
-    
-    # Call the function get_my_band_all_data with the correct parameters from get_band_all_data.py
+    # The main function generates histograms for RST_SENT and RST_RCVD for each year specified in the 'years' list.
+    # It calls the function get_my_band_all_data with the correct parameters from get_band_all_data.py
+
     years = ["2024", "2025", "2026"]
     sns.set_style("darkgrid")
     fig, axes = plt.subplots(len(years), 1, figsize=(6, 9), sharex=True)

@@ -1,3 +1,7 @@
+# This script generates scatter plots for SFI, A_INDEX, and K_INDEX against DISTANCE for each year.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
 import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt
 import seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
 

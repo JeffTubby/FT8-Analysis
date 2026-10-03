@@ -1,12 +1,17 @@
-#my_get_data_year_only
+# This script generates scatter plots showing the Solar Flux Index (SFI) for each year.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
 import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
 
 from datetime import datetime
 
-# create line plot with subplot for both series
+# Import the custom drop down box function for selecting band and year.
+# This function will be used to create a drop down box for selecting the band and year.
+from my_dropdown_box_func import my_drop_down_box as ddb
 
 def get_data_for_year(year_type):
-    """data for each year"""
+    """Retrieve and preprocess data for the specified year."""
 
     Path = pathlib.Path('data/datasheet.xlsx')
     df = pd.read_excel('data/datasheet.xlsx')
@@ -34,20 +39,25 @@ def get_data_for_year(year_type):
     data = data.sort_values('MONTH')
     #data=data.sort_values('SFI')
     return data
+
 def main():
-    from my_dropdown_box_func import my_drop_down_box as ddb
+    
     # get data from box input
     print("Running drop down box function to select band and year...")
     band_type, year_type = ddb(default_band="20m", default_year="2025")
 
     print(f"Band selected: {band_type}, Year selected: {year_type}")
 
+    # Retrieve the data for the selected year.
     data = get_data_for_year(year_type)
+
+    # Set the Seaborn style for the scatter plots.
+    # Create the first scatter plot for SFI versus DISTANCE.
     
     sns.set_style("darkgrid")
     plt.figure(figsize=(6,4))   
     plot_data = data.dropna(subset=["DISTANCE", "SFI"]).reset_index(drop=True)
-    ax = sns.scatterplot(x="DISTANCE", y="SFI", data=plot_data, label="SFI", color="red", s=25, edgecolor="black")
+    ax = sns.scatterplot(x="DISTANCE", y="SFI", data=plot_data, label="SFI", color="green", s=25, edgecolor="black")
     plt.title(f"Plot 1C FT8 SFI Scatterplot for Year {year_type}", fontsize=10)
     plt.xlabel("DISTANCE", fontsize=10)
     plt.ylabel("SFI", fontsize=10)
@@ -68,7 +78,7 @@ def main():
     sns.set_style("darkgrid")
     plt.figure(figsize=(6,4))   
     plot_data = data.dropna(subset=["DISTANCE", "A_INDEX"]).reset_index(drop=True)
-    ax = sns.scatterplot(x="DISTANCE", y="A_INDEX", data=plot_data, label="A_INDEX", color="blue", s=25, edgecolor="black")
+    ax = sns.scatterplot(x="DISTANCE", y="A_INDEX", data=plot_data, label="A_INDEX", color="red", s=25, edgecolor="black")
     plt.title(f"PLOT 2A FT8 A_INDEX Scatterplot Analysis for Year {year_type}", fontsize=10)
     plt.xlabel("DISTANCE", fontsize=10)
     plt.ylabel("A_INDEX", fontsize=10)
@@ -89,7 +99,7 @@ def main():
     sns.set_style("darkgrid")
     plt.figure(figsize=(6,4))   
     plot_data = data.dropna(subset=["DISTANCE", "K_INDEX"]).reset_index(drop=True)
-    ax = sns.scatterplot(x="DISTANCE", y="K_INDEX", data=plot_data, label="K_INDEX", color="green", s=25, edgecolor="black")
+    ax = sns.scatterplot(x="DISTANCE", y="K_INDEX", data=plot_data, label="K_INDEX", color="blue", s=25, edgecolor="black")
     plt.title(f"Plot 1A FT8 K_INDEX Scatterplot Analysis for Year {year_type}", fontsize=10)
     plt.xlabel("DISTANCE", fontsize=10)
     plt.ylabel("K_INDEX", fontsize=10)

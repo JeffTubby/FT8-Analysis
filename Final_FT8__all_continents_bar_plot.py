@@ -1,3 +1,8 @@
+# This script generates a bar plot showing the total QSO counts by continent.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
+
 import pandas as pd, sys, matplotlib.pyplot as plt, pathlib
 import datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
 

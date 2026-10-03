@@ -1,13 +1,19 @@
+
+# This script generates a scatter plot showing RST values over local time (TIME_ADL).
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 18/06/2024
+
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import mplcursors
 import pandas as pd
 import seaborn as sns
 
-from FT8_data_prep import prepare_time_adl_rst_plot_data
-from FT8_data_prep import prepare_rst_long_data
-from FT8_data_prep import prepare_rst_line_data
-from FT8_data_prep import prepare_mean_rst_line_data
+# Required imports and data preparation functions for plotting RST values over time.
+from Final_FT8_data_prep import prepare_time_adl_rst_plot_data
+from Final_FT8_data_prep import prepare_rst_long_data
+from Final_FT8_data_prep import prepare_rst_line_data
+from Final_FT8_data_prep import prepare_mean_rst_line_data
 
 
 def get_all_data():
@@ -39,17 +45,21 @@ def get_all_data():
     return data
 
 def main():
+    # Fetch and preprocess all data from the datasheet.
     df = get_all_data()
     if df is None or df.empty:
         print("No rows available to plot.")
         return
-
+    
+    # Prepare the data specifically for plotting RST values over local time.
     plot_df = prepare_time_adl_rst_plot_data(df)
     if plot_df.empty:
         print("No valid RST rows available to plot.")
         return
     
-
+    # Additional preprocessing or filtering steps can be added here if needed.
+    # For example, you could filter out rows with missing RST values or specific bands.
+    
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(9, 6))
     plt.title('Scatter Plot Local Time (TIME_ADL) vs Signal Strength (RST)', fontsize=16)
