@@ -6,6 +6,7 @@ import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt
 import seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
 
 from datetime import datetime
+
 def get_data_for_year(year_type):
     """data for each year"""
     Path = pathlib.Path('data/datasheet.xlsx')
@@ -41,7 +42,7 @@ def SFI_plot_combined(data, year_type, ax=None, show=True) -> None:
     plt.figure(figsize=(6,4))   
     plot_data = data.dropna(subset=["DISTANCE", "SFI"]).reset_index(drop=True)
     ax = sns.scatterplot(x="DISTANCE", y="SFI", data=plot_data, label="SFI", color="red", s=25, edgecolor="black")
-    plt.title(f"Plot 1C FT8 SFI Scatterplot for Year {year_type}", fontsize=10)
+    plt.title(f"Plot 2A FT8 SFI Scatterplot for Year {year_type}", fontsize=10)
     plt.xlabel("DISTANCE", fontsize=10)
     plt.ylabel("SFI", fontsize=10)
     plt.xticks(rotation=30)
@@ -71,7 +72,7 @@ def main():
         data = get_data_for_year(year_type)
         sns.scatterplot(data=data, x='DISTANCE', y='SFI', ax=axis, label='SFI', color='green', s=25, edgecolor='black')
         axis.set_title(
-            f'PLOT 1 Scatterplot of DISTANCE vs SFI for {year_type} year',
+            f'PLOT 2A Scatterplot of DISTANCE vs SFI for {year_type} year',
             fontsize=8, weight='bold'
         )
         axis.set_xlabel('DISTANCE', fontsize=8, weight='bold')
@@ -90,7 +91,7 @@ def main():
         data = get_data_for_year(year_type)
         sns.scatterplot(data=data, x='DISTANCE', y='A_INDEX', ax=axis, label='A_INDEX', color='red', s=25, edgecolor='black')
         axis.set_title(
-            f'PLOT 2 Scatterplot of DISTANCE vs A_INDEX for {year_type} year',
+            f'PLOT 2B Scatterplot of DISTANCE vs A_INDEX for {year_type} year',
             fontsize=8, weight='bold'
         )
         axis.set_xlabel('DISTANCE', fontsize=8, weight='bold')
@@ -109,7 +110,7 @@ def main():
         data = get_data_for_year(year_type)
         sns.scatterplot(data=data, x='DISTANCE', y='K_INDEX', ax=axis, label='K_INDEX', color='Blue', s=25, edgecolor='black')
         axis.set_title(
-            f'PLOT 3 Scatterplot of DISTANCE vs K_INDEX for {year_type} year',
+            f'PLOT 2C Scatterplot of DISTANCE vs K_INDEX for {year_type} year',
             fontsize=8, weight='bold'
         )
         axis.set_xlabel('DISTANCE', fontsize=8, weight='bold')
