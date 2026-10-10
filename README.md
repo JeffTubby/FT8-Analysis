@@ -1,4 +1,4 @@
-## FT8 Ham Radio Mode version 2.00
+## FT8 Ham Radio Mode version 2.00 AI assisted project
 
 # These set of programs extract data from an Excel file.
 The excel file was created by downloading text file from Ham Radio Deluxe using power query to extract the columns required
