@@ -1,8 +1,13 @@
 # This script generates a world map highlighting QSO counts for each continent.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 10/09/2026
+# Version: 2.0
+# Description: Generates a world map highlighting QSO counts for each continent
+#using Geopandas and Matplotlib. 
+# The world map is generated using Geopandas and Matplotlib.
 
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
+import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns
+import matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
 import geopandas as gpd
 import geodatasets
 import matplotlib.patheffects as path_effects

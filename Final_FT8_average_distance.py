@@ -1,9 +1,10 @@
 # This script generates a bar plot showing the average distance by band.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+# Version: 2.0
+# Description: Generates a bar plot showing the average distance by band.
 
 import pandas as pd
-import sys
 from matplotlib.ticker import FixedLocator
 import seaborn as sns
 import matplotlib.pyplot as plt

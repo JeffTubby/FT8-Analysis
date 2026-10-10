@@ -1,9 +1,14 @@
 # This module provides data preparation functions for FT8 RST plotting.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+# Version: 2.0
+# Description: Provides data preparation functions for FT8 RST plotting.
+
 import pandas as pd
 
-"""These functions are used to prepare FT8 RST data for various types of plots, ensuring consistency and correctness in the visualizations."""
+"""These functions are used to prepare FT8 RST data for various types of plots,
+   ensuring consistency and correctness in the visualizations."""
+
 # Functions for preparing RST data for various types of plots.
 # The functions in this module are used to transform and clean raw FT8 RST data
 # into formats suitable for different types of plots, including long-format data

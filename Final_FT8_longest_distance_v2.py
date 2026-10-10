@@ -1,6 +1,9 @@
 # This script generates a bar plot showing the longest distance by date.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+# Version: 2.0
+# Description: Generates a bar plot showing the longest distance by date.
+# The bar plot is generated using Seaborn and Matplotlib.
 
 import pandas as pd
 import matplotlib.pyplot as plt

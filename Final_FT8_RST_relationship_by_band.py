@@ -3,12 +3,12 @@
 # Author: Jeff Tubbenhauer VK5IU
 # Date 07/10/2026 
 # version 2.0 Only show band on my dropdown box
+# Description: Loads FT8 data for a selected band across all years,
+# validates it, and plots the relationship between RST_SENT and RST_RCVD.
+# The scatter plot is generated using Matplotlib and mplcursors.
 
-import sys
 import pathlib
 import datetime as dt
-from datetime import datetime
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,6 +16,7 @@ import mplcursors
 import FT8_data_functions
 import my_dropdown_box_func
 
+from datetime import datetime
 from FT8_data_functions import get_my_band_all_data as gmdad
 from my_dropdown_box_func import my_drop_down_box as ddb
 
@@ -69,8 +70,8 @@ def main():
     plt.ylabel('RST_RCVD', color='red')
     plt.tick_params(axis='x', colors='green')
     plt.tick_params(axis='y', colors='red')
-    plt.title(f'{band_type} sent vs received RST for all years')
-    plt.legend(loc='upper left')
+    plt.title(f'Plot 4C:{band_type} sent vs received RST for all years')
+    plt.legend(loc='upper left', frameon=True, framealpha=0.9, edgecolor='black')
     # Click a dot to pin its label; labels stay until removed (right-click or Delete key on the label).
     cursor = mplcursors.cursor(points, hover=False, multiple=True)
 

@@ -1,5 +1,15 @@
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
+# This script generates scatter plots showing the K_INDEX for each year.
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 08/10/2026
+# Version: 2.0
+# Description: Generates scatter plots showing the K_INDEX for each year.
+# The scatter plots are generated using Seaborn and Matplotlib.
+
+import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt
+import seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np
+import datetime as datetime, argparse
 import FT8_data_functions
+
 from datetime import datetime
 from FT8_data_functions import get_data_for_year as gdfy
 

@@ -1,4 +1,4 @@
-## FT8 Ham Radio Mode
+## FT8 Ham Radio Mode version 2.00
 
 # These set of programs extract data from an Excel file.
 The excel file was created by downloading text file from Ham Radio Deluxe using power query to extract the columns required
@@ -21,7 +21,6 @@ Python 3.6+
 Free
 
 Create by Jeff Tubbenhauer VK5IU
-
 email address for correspondence tubbyvk5iu@outlook.com
 
 ## Contributing

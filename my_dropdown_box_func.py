@@ -10,11 +10,10 @@
 # band_type, _ = ddb(default_band="20m", include_year=False)
 #_, year_type = ddb(default_year="2025", include_band=False)
 
-
 import os
 import tkinter as tk
-from tkinter import ttk
 
+from tkinter import ttk
 
 def my_drop_down_box(
     default_band=None,
@@ -103,7 +102,7 @@ def my_drop_down_box(
 
     button = tk.Button(root, text="Click to Continue", command=select_and_close)
     button.pack(pady=15)
-
+    #   Ensure the window is brought to the front and focused before entering the main loop.
     root.update_idletasks()
     root.deiconify()
     root.lift()

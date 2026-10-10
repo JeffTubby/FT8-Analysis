@@ -1,6 +1,9 @@
 # This script generates histograms for RST_SENT and RST_RCVD for each year.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+# Version: 2.0
+# Description: Generates histograms for RST_SENT and RST_RCVD for each year.
+#The histograms are generated using Seaborn and Matplotlib.
 
 import pandas as pd, seaborn as sns, matplotlib.pylab as plt, pathlib, sys, datetime
 from datetime import datetime as dt

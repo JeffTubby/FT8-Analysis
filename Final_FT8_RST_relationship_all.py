@@ -1,7 +1,12 @@
-# This script loads FT8 data for all years, validates it, and plots the relationship between RST_SENT and RST_RCVD.
+# This script loads FT8 data for all years, validates it,
+#   and plots the relationship between RST_SENT and RST_RCVD.
 # The script uses matplotlib for plotting and mplcursors for interactive annotations.
 # Author: Jeff Tubbenhauer VK5IU
 # Date 07/10/2026
+# Version: 2.0
+# Description: Loads FT8 data for all years, validates it,
+# and plots the relationship between RST_SENT and RST_RCVD.
+# The scatter plot is generated using Matplotlib and mplcursors.
 
 import sys
 import pathlib

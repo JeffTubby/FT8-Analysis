@@ -1,6 +1,12 @@
-# This script generates a scatter plot showing RST values over local time (TIME_ADL) for a selected band and year.
+# This script generates a scatter plot showing RST values over local time (TIME_ADL)
+# for a selected band and year.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+# Version: 2.0
+# Description: Generates a scatter plot showing RST values over local time (TIME_ADL)
+#for a selected band and year.
+# The scatter plot is generated using Seaborn and Matplotlib.
+
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import mplcursors

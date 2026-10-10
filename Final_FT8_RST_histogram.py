@@ -1,8 +1,13 @@
 # This script generates histograms for RST_SENT and RST_RCVD values for a selected band and year.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+# Version: 2.0
+# Description: Generates histograms for RST_SENT and RST_RCVD values for a selected band and year.
+# The histograms are generated using Seaborn and Matplotlib.
 
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
+
+import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns
+import matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
 
 # Drop down box function to select band and year
 from my_dropdown_box_func import my_drop_down_box as ddb

@@ -1,26 +1,29 @@
 # Final_FT8_world_map_continents_by_bands.py
 # Author: Jeff Tubbenhauer VK5IU
 # Date: 05/06/2024
-# This script generates a world map showing QSO counts for each continent, filtered by the selected band.
+# This script generates a world map showing QSO counts for each continent, filtered
+# by the selected band.
+# version: 2.0 added functionality to exclude year selection in the dropdown box
+# The world map is generated using Geopandas and Matplotlib.
+# The script allows the user to select a specific band and generates
+# a world map showing QSO counts for each continent based on that selection. 
 
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
+import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns
+import matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
 import geopandas as gpd
 import geodatasets
 import matplotlib.patheffects as path_effects
 from datetime import datetime
 # Import necessary libraries for data processing, plotting, and geospatial analysis.
-# This includes libraries for handling Excel data, plotting maps, and managing date and time information.
+# This includes libraries for handling Excel data, plotting maps, and managing date
+#and time information.
 # The script also includes functionality for selecting the desired band and year through a dropdown box.
-from my_dropdown_box_func import my_drop_down_box as ddb
 
+from my_dropdown_box_func import my_drop_down_box as ddb
 from collections import Counter
 
 def get_my_data_by_band(band_type): #gmd
     """Fetches and processes data for the specified band and year."""
-    #import pathlib
-    #import pandas as pd
-    #import sys
-    
     Path = pathlib.Path('data/datasheet.xlsx')   
     df = pd.read_excel('data/datasheet.xlsx', keep_default_na=False)
     df['BAND'] = df['BAND'].astype(str).str.strip()
@@ -69,8 +72,8 @@ def get_my_data_by_band(band_type): #gmd
 def main():
     # get data from box input
     print("Running drop down box function to select band and year...")
-    band_type, year_type = ddb(default_band="20m", default_year="2025")
-
+    #band_type, year_type = ddb(default_band="20m", default_year="2025")
+    band_type, _ = ddb(default_band="20m", include_year=False)
     print(f"Band selected: {band_type}")
     
 

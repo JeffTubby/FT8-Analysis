@@ -1,7 +1,9 @@
 """Helpers for loading and filtering FT8 contest data from the project Excel sheet."""
 # Author: Jeff Tubbenhauer VK5IU
 # Date 07/10/2026
-
+# Version: 2.0
+# Description: Provides helper functions for loading and filtering FT8 contest data 
+#from the project Excel sheet.
 import pandas as pd
 
 from pathlib import Path

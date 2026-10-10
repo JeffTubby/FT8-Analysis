@@ -1,8 +1,13 @@
 # This script generates scatter plots showing the Solar Flux Index (SFI) for each year.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 08/10/2026
+# Version: 2.0
+# Description: Generates scatter plots showing the Solar Flux Index (SFI) for each year
+#with a drop down box for year selection.
+# The scatter plots are generated using Seaborn and Matplotlib.
 
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
+import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns
+import matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime
 
 from datetime import datetime
 
@@ -44,9 +49,9 @@ def main():
     
     # get data from box input
     print("Running drop down box function to select band and year...")
-    band_type, year_type = ddb(default_band="20m", default_year="2025")
-
-    print(f"Band selected: {band_type}, Year selected: {year_type}")
+    # Call the drop down box function to get the year selection.
+    _, year_type = ddb(default_year="2025", include_band=False)
+    print(f"Year selected: {year_type}")
 
     # Retrieve the data for the selected year.
     data = get_data_for_year(year_type)

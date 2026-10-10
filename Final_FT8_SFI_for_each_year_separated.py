@@ -1,5 +1,13 @@
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
+# Author: Jeff Tubbenhauer VK5IU
+# Date: 10/09/2026
+# Version: 2.0
+# Description: Generates scatter plots showing the SFI for each year.
+# The scatter plots are generated using Seaborn and Matplotlib.
+
+import pandas as pd, sys, matplotlib.pyplot as plt, pathlib, datetime as dt, seaborn as sns
+import matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
 import FT8_data_functions
+
 from datetime import datetime
 from FT8_data_functions import get_data_for_year as gdfy
 

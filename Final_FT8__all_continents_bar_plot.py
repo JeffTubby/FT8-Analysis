@@ -1,10 +1,13 @@
 # This script generates a bar plot showing the total QSO counts by continent.
 # Author: Jeff Tubbenhauer VK5IU
-# Date: 18/06/2024
+# Date: 18/06/2026
+#Version: 2.0
+#Description: Generates a bar plot showing the total QSO counts by continent.
 
 
-import pandas as pd, sys, matplotlib.pyplot as plt, pathlib
-import datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors, numpy as np, datetime as datetime, argparse
+import pandas as pd, matplotlib.pyplot as plt, pathlib
+import datetime as dt, seaborn as sns, matplotlib.dates as mdates, mplcursors
+import numpy as np, datetime as datetime, argparse
 
 from datetime import datetime
 from my_dropdown_box_func import my_drop_down_box as ddb
@@ -49,8 +52,9 @@ def main():
         qso_cont = df["CONT"].value_counts().to_dict()
         
     fig, ax = plt.subplots(figsize=(6, 4.5), dpi=100)
-    sns.barplot(x=list(qso_cont.keys()), y=list(qso_cont.values()),
-                palette=sns.color_palette("Set2", len(qso_cont)), ax=ax)
+    continents = list(qso_cont.keys())
+    sns.barplot(x=continents, y=list(qso_cont.values()), hue=continents,
+                palette=sns.color_palette("Set2", len(qso_cont)), legend=False, ax=ax)
     for container in ax.containers:
         ax.bar_label(container, fmt='%d', padding=3)
     ax.set_title("Total QSO Counts by Continent") 
