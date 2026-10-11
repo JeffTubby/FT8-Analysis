@@ -1,5 +1,11 @@
-import pandas as pd
+# Author: Jeff Tubbenhauer VK5IU
+# Date 07/10/2026
+# Version: 2.0
+# Description: Provides helper functions for preparing FT8 contest data for plotting.
+# This module focuses on transforming FT8 contest data into formats
+#suitable for various types of plots, such as line plots and scatter plots.
 
+import pandas as pd
 
 def prepare_rst_long_data(data: pd.DataFrame, x_column: str) -> pd.DataFrame:
     """Return long-format RST data for consistent SENT/RCVD plotting."""
